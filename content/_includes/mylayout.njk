@@ -1,0 +1,28 @@
+---
+title: My Rad Blog
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/bundle.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+  </head>
+  <body>
+    {{ content | safe }}
+
+    {% if backlinks.length > 0 %}
+    <nav>
+        <h3>Linking here</h3>
+        <ul>
+            {% for link in backlinks %}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+    {% endif %}
+  </body>
+</html>
+
