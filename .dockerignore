@@ -5,3 +5,5 @@ _site
 Dockerfile
 docker-compose.yml
 content
+.obsidian
+README.md
