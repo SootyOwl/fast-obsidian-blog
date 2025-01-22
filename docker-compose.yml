@@ -1,0 +1,8 @@
+services:
+  site:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      # Mount the content directory to the container (change the path to your content directory)
+      - ./example-content:/app/content  
