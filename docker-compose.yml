@@ -5,4 +5,25 @@ services:
       - "8080:8080"
     volumes:
       # Mount the content directory to the container (change the path to your content directory)
-      - ./example-content:/app/content  
+      - ./content:/app/content
+    restart: unless-stopped
+
+  # obsidian (for automatic background Sync)
+  obsidian-sync:
+    image: lscr.io/linuxserver/obsidian:latest
+    container_name: obsidian
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      # KasmVNC settings
+    ports:
+      - 3000:3000
+      - 3001:3001
+    volumes:
+      - .obsidian/config:/config
+      - ./content:/content  # content directory
+    shm_size: "1gb"  # needed for electron applications to function properly
+    restart: unless-stopped
