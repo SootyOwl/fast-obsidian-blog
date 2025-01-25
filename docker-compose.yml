@@ -1,16 +1,23 @@
 services:
   site:
     build: .
+    container_name: site
     ports:
       - "8080:8080"
     volumes:
       # Mount the content directory to the container (change the path to your content directory)
-      - ./content:/app/content
+      - ./content:/app/content:ro
+      # Mount the 11ty config file to the container (for easier changes without rebuilding the image)
+      - ./eleventy.config.js:/app/eleventy.config.js:ro
     restart: unless-stopped
+    user: 1000:1000  # Change to your user id and group id
 
   # obsidian (for automatic background Sync)
+  # docker must not be running in rootless mode for this to work
+  # otherwise you will probably get an error like this:
+    # obsidian  | Openbox-Message: Failed to open the display from the DISPLAY environment variable.
   obsidian-sync:
-    image: lscr.io/linuxserver/obsidian:latest
+    image: docker.io/linuxserver/obsidian:latest
     container_name: obsidian
     security_opt:
       - seccomp:unconfined #optional
@@ -18,7 +25,6 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      # KasmVNC settings
     ports:
       - 3000:3000
       - 3001:3001
