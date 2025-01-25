@@ -26,3 +26,50 @@ a:hover {
 h1, h2, h3 {
     line-height: 1.2;
 }
+
+/* internal links */
+a[href*="/"] {
+    color: #1DA1F2;
+}
+
+/* internal links to pages which don't exist */
+a[href*="/stubs/"] {
+    color: #a94052;
+}
+
+/* external links */
+a[href^="http"] {
+    color: #0066cc;
+    /* decorate with an arrow after the link */
+    position: relative;
+    padding-right: 0.7em;
+    }
+    a[href^="http"]:after {
+        content: "↗";
+        position: absolute;
+        right: 0;
+        font-size: 0.8em;
+        line-height: 1.4;
+}
+
+/* footer */
+footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    font-size: 0.8em;
+    color: #666;
+    text-align: center;
+}
+
+/* header */
+header {
+    /* center */
+    text-align: center;
+}
+
+/* p (class subtitle) */
+p.subtitle {
+    font-size: 1.2em;
+    color: #666;
+}
