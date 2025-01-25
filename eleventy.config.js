@@ -1,10 +1,7 @@
 module.exports = (eleventyConfig) => {
     // Add the interlinker plugin for obsidian wikilink support
     eleventyConfig.addPlugin(
-      require('@photogabble/eleventy-plugin-interlinker'),
-      {
-        defaultLayout: 'layouts/embed.liquid'
-      }
+      require('@photogabble/eleventy-plugin-interlinker'), {}
     );
     // Add an alias for the post layout
     eleventyConfig.addLayoutAlias("post", "mylayout.njk");
