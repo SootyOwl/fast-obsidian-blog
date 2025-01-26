@@ -73,3 +73,18 @@ p.subtitle {
     font-size: 1.2em;
     color: #666;
 }
+
+/* date */
+div.dates {
+    color: #969696;
+    font-size: 0.8em;
+    text-align: right;
+    position: absolute;
+    right: 1rem;
+}
+
+/* tags */
+ul.tags {
+    list-style-type: none;
+    padding: 0;
+}
