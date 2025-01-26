@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/bundle.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | Hyperfox</title>
+  </head>
+  <body>
+    <header class="header">
+      <h1>Hyperfox</h1>
+      <nav class="nav">
+        <a href="/">Home</a>
+        <a href="/about-me">About</a>
+        <a href="/tags">Tags</a>
+      </nav>
+    </header>
+
+    {{ content | safe }}
+
+    <footer>
+      <div class="dates">
+      {% if dateCreated or dateModified %}
+          <p class="date">
+          {% if dateCreated %}Created: {{ dateCreated | dateFormat }}{% endif %}
+          {% if dateCreated and dateModified %}<br>{% endif %}
+          {% if dateModified %}Modified: {{ dateModified | dateFormat }}{% endif %}
+          </p>
+      {% endif %}
+      </div>
+      <p>© 2025 Hyperfox</p>
+      <p>Find me on <a href="https://github.com/SootyOwl">GitHub</a></p>
+    </footer>
+  </body>
+</html>

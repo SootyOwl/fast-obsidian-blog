@@ -1,46 +1,34 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <link rel="stylesheet" href="/bundle.css">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} | Hyperfox</title>
-  </head>
-  <body>
-    <header class="header">
-      <h1>{{ title }}</h1>
-      {% if subtitle %}
-        <p class="subtitle">{{ subtitle }}</p>
-      {% endif %}
+---
+layout: base.njk
+---
 
-      {% if tags.length > 0 %}
-      <nav class="tags">
-        {% for tag in tags %}
-          {% if not loop.first %}|{% endif %}
-          <a href="/tags/{{ tag }}">#{{ tag }}</a>
+<header class="content-header">
+  <h1>{{ title }}</h1>
+  {% if subtitle %}
+    <p class="subtitle">{{ subtitle }}</p>
+  {% endif %}
+
+  {% if tags.length > 0 %}
+  <nav class="tags">
+    {% for tag in tags %}
+      {% if not loop.first %}|{% endif %}
+      <a href="/tags/{{ tag }}">#{{ tag }}</a>
+    {% endfor %}
+  </nav>
+  {% endif %}
+</header>
+
+<main class="content">
+  {{ content | safe }}
+</main>
+
+{% if backlinks.length > 0 %}
+<nav class="backlinks">
+    <h3>Linking here</h3>
+    <ul>
+        {% for link in backlinks %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
         {% endfor %}
-      </nav>
-      {% endif %}
-    </header>
-
-
-    <main class="content">
-      {{ content | safe }}
-    </main>
-
-    {% if backlinks.length > 0 %}
-    <nav class="backlinks">
-        <h3>Linking here</h3>
-        <ul>
-            {% for link in backlinks %}
-                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-            {% endfor %}
-        </ul>
-    </nav>
-    {% endif %}
-
-    <footer>
-      <p>Find me on <a href="https://github.com/SootyOwl">GitHub</a></p>
-    </footer>
-  </body>
-</html>
+    </ul>
+</nav>
+{% endif %}
