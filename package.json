@@ -12,6 +12,7 @@
   "description": "",
   "dependencies": {
     "@11ty/eleventy": "^3.0.0",
-    "@photogabble/eleventy-plugin-interlinker": "^1.1.0"
+    "@photogabble/eleventy-plugin-interlinker": "^1.1.0",
+    "markdown-it-task-checkbox": "^1.0.6"
   }
 }
