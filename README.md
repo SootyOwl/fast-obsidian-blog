@@ -41,6 +41,9 @@ Note that if you don't use Obsidian Sync, the site template linked above is prob
 
 4. The site should now be available at <http://localhost:8080>, and changes to your Obsidian vault will be automatically reflected in the site as you make them in Obsidian.
 
-## License
 
-This repository is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+## Licensing
+
+This project's own code is released under The Unlicense and dedicated to the public domain. However, this project uses third-party dependencies that are subject to their own licenses. The terms of The Unlicense apply only to this project's original code, not to its dependencies.
+
+Please refer to each dependency's own license terms, which can typically be found in their respective package documentation or repository.
