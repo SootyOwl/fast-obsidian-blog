@@ -18,18 +18,11 @@
 
     {{ content | safe }}
 
-    <footer>
-      <div class="dates">
-      {% if dateCreated or dateModified %}
-          <p class="date">
-          {% if dateCreated %}Created: {{ dateCreated | dateFormat }}{% endif %}
-          {% if dateCreated and dateModified %}<br>{% endif %}
-          {% if dateModified %}Modified: {{ dateModified | dateFormat }}{% endif %}
-          </p>
-      {% endif %}
+    <footer class="footer">
+      <div class="footer-content">
+        <p>© 2025 Hyperfox</p>
+        <p>Find me on <a href="https://github.com/SootyOwl">GitHub</a></p>
       </div>
-      <p>© 2025 Hyperfox</p>
-      <p>Find me on <a href="https://github.com/SootyOwl">GitHub</a></p>
     </footer>
   </body>
 </html>

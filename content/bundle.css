@@ -23,7 +23,9 @@ a:hover {
     text-decoration: underline;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     line-height: 1.2;
 }
 
@@ -43,13 +45,24 @@ a[href^="http"] {
     /* decorate with an arrow after the link */
     position: relative;
     padding-right: 0.7em;
-    }
-    a[href^="http"]:after {
-        content: "↗";
-        position: absolute;
-        right: 0;
-        font-size: 0.8em;
-        line-height: 1.4;
+}
+
+a[href^="http"]:after {
+    content: "↗";
+    position: absolute;
+    right: 0;
+    font-size: 0.8em;
+    line-height: 1.4;
+}
+
+/* top content "margin-top: 0em; margin-bottom: 0em; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee;" */
+.top-content {
+    margin-top: 0em;
+    margin-bottom: 0em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee;
 }
 
 /* footer */
@@ -68,6 +81,8 @@ header {
     text-align: center;
 }
 
+
+
 /* p (class subtitle) */
 p.subtitle {
     font-size: 1.2em;
@@ -75,12 +90,10 @@ p.subtitle {
 }
 
 /* date */
-div.dates {
+.dates {
     color: #969696;
     font-size: 0.8em;
     text-align: right;
-    position: absolute;
-    right: 1rem;
 }
 
 /* tags */

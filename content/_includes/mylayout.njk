@@ -7,20 +7,35 @@ layout: base.njk
   {% if subtitle %}
     <p class="subtitle">{{ subtitle }}</p>
   {% endif %}
+</header>
+
+<div class="top-content">
 
   {% if tags.length > 0 %}
-  <nav class="tags">
-    {% for tag in tags %}
+  <div class="tags" style="margin-top: 0em;">
+    {% for tag in tags | sort %}
       {% if not loop.first %}|{% endif %}
       <a href="/tags/{{ tag }}">#{{ tag }}</a>
     {% endfor %}
-  </nav>
+  </div>
+
   {% endif %}
-</header>
+  <div class="dates" style="margin-top: 0em;">
+  {% if dateCreated or dateModified %}
+    <p class="date">
+    {% if dateCreated %}Created: {{ dateCreated | dateFormat }}{% endif %}
+    {% if dateCreated and dateModified %}|{% endif %}
+    {% if dateModified %}Modified: {{ dateModified | dateFormat }}{% endif %}
+    </p>
+  {% endif %}
+  </div>
+</div>
+
 
 <main class="content">
   {{ content | safe }}
 </main>
+
 
 {% if backlinks.length > 0 %}
 <nav class="backlinks">
