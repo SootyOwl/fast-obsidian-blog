@@ -1,0 +1,37 @@
+
+services:
+  site:
+    build: .
+    container_name: site
+    ports:
+      - "${SITE_PORT}:8080"
+    volumes:
+      - ${CONTENT_DIR}:/app/content:ro
+      - ./eleventy.config.js:/app/eleventy.config.js:ro
+    restart: unless-stopped
+    user: ${PUID}:${PGID}
+    env_file: .env
+
+  obsidian-sync:
+    image: docker.io/linuxserver/obsidian:latest
+    container_name: obsidian
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    ports:
+      - "${OBSIDIAN_PORT}:3000"
+      - "${OBSIDIAN_SYNC_PORT}:3001"
+    volumes:
+      - obsidianconfig:/config
+      - ${CONTENT_DIR}:/content
+    shm_size: "1gb"
+    restart: unless-stopped
+    profiles:
+      - obsidian
+
+
+volumes:
+    obsidianconfig:
