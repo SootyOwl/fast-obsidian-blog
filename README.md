@@ -21,26 +21,37 @@ I've decided against including the content of the site (the .md files) in this r
 
 Note that if you don't use Obsidian Sync, the site template linked above is probably more useful to you. This repository is specifically tailored to my needs. If you do use Obsidian Sync, you can use this repository as a starting point for your own site. Here's how you can set it up:
 
-1. Clone this repository
+Clone this repository
 
     ```bash
     git clone https://github.com/SootyOwl/my-site.git
+    cd my-site
     ```
 
-2. Bring up the Docker containers
+### Using the setup script
 
-    ```bash
-    docker-compose up
-    ```
+To bootstrap your site scaffold and launch the containers, make the script executable and run:
 
-3. Configure Obsidian Sync in the container
+```bash
+chmod +x setup.sh
+./setup.sh
+```
 
-    - Visit <http://localhost:3000> in your browser and configure Obsidian Sync via the web interface (you'll need to log in with your Obsidian account)
-    - Ensure the folder `/content` is selected as the sync folder (or edit the docker-compose file to change the volume mount)
-    - Once you've configured Obsidian Sync, you can close the browser tab
+Follow the prompts to configure your site. The script will:
 
-4. The site should now be available at <http://localhost:8080>, and changes to your Obsidian vault will be automatically reflected in the site as you make them in Obsidian.
+- Check for prerequisites: Docker, Docker Compose, and envsubst
+- Prompt for site title, ports, content directory, timezone, and Obsidian sync
+- Create necessary directories (`$CONTENT_DIR`, `.obsidian/config`)
+- Generate `.env` and `docker-compose.yml`
+- Start the containers for your site and (optionally) Obsidian Sync
 
+After completion:
+
+- Visit `http://localhost:${SITE_PORT}` for your site
+- If Obsidian Sync is enabled, visit `http://localhost:${OBSIDIAN_PORT}` for the Obsidian interface to set up your vault sync
+- Edit your content in the `$CONTENT_DIR` directory
+- The site will automatically rebuild when you save changes to the Markdown files
+- The Obsidian Sync container will automatically sync changes to your Obsidian vault if enabled and configured 
 
 ## Licensing
 
