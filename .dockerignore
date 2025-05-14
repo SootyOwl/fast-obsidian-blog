@@ -1,9 +1,12 @@
-node_modules
-_site
+node_modules/
+_site/
 .git
 .gitignore
 Dockerfile
 docker-compose.yml
-content
-.obsidian
+content/
+.obsidian/
 README.md
+LICENSE
+setup/
+setup.sh

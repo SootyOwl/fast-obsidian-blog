@@ -1,4 +1,6 @@
 const markdownItTaskCheckbox = require('markdown-it-task-checkbox');
+const mdItObsidianCallouts = require('markdown-it-obsidian-callouts');
+
 
 module.exports = (eleventyConfig) => {
   // Add the interlinker plugin for obsidian wikilink support
@@ -10,6 +12,9 @@ module.exports = (eleventyConfig) => {
   // Set the input directory and copy the bundle.css file to the output directory
   eleventyConfig.setInputDirectory("content");
   eleventyConfig.addPassthroughCopy("content/bundle.css");
+
+  // Add the markdown-it-obsidian-callouts plugin to the markdown-it parser
+  eleventyConfig.amendLibrary("md", (mdLib) => mdLib.use(mdItObsidianCallouts));
   // Add the markdown-it-task-checkbox plugin to the markdown-it parser
   eleventyConfig.amendLibrary("md", (mdLib) => mdLib.use(markdownItTaskCheckbox));
 
