@@ -53,6 +53,43 @@ After completion:
 - The site will automatically rebuild when you save changes to the Markdown files
 - The Obsidian Sync container will automatically sync changes to your Obsidian vault if enabled and configured 
 
+## Extending the site template
+
+### Adding markdown-it plugins
+
+The Markdown parser is created using the `markdown-it` library, which allows you to extend its functionality with plugins to add additional features.
+
+First, install the plugin you want to use. For example, to add the `markdown-it-footnote` plugin, you can do the following:
+
+```bash
+npm install markdown-it-footnote --save
+```
+
+Then, you can add the plugin to the Markdown parser in your Eleventy configuration file. To add plugins to the Markdown parser, edit the `module.exports` in the `eleventy.config.js` file. For example, to add the `markdown-it-footnote` plugin, you can do the following:
+
+```javascript
+// eleventy.config.js
+
+// ... other imports
+
+// Import the footnote plugin
+const markdownItFootnote = require('markdown-it-footnote');
+
+
+module.exports = (eleventyConfig) => {
+    //... other config
+
+    // Add the plugins to the markdown-it library
+    addMarkdownItPlugins(eleventyConfig, [
+        markdownItTaskCheckbox,
+        mdItObsidianCallouts,
+        mdItFootnote,  // Add the footnote plugin
+    ]);
+
+    //... other config
+};
+```
+
 ## Licensing
 
 This project's own code is released under The Unlicense and dedicated to the public domain. However, this project uses third-party dependencies that are subject to their own licenses. The terms of The Unlicense apply only to this project's original code, not to its dependencies.
