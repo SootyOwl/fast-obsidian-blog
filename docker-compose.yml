@@ -10,7 +10,6 @@ services:
       # Mount the 11ty config file to the container (for easier changes without rebuilding the image)
       - ./eleventy.config.js:/app/eleventy.config.js:ro
     restart: unless-stopped
-    user: 1000:1000  # Change to your user id and group id
 
   # obsidian (for automatic background Sync)
   # docker must not be running in rootless mode for this to work
