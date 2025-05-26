@@ -1,6 +1,7 @@
 node_modules/
 _site/
 .git
+.github
 .gitignore
 Dockerfile
 docker-compose.yml
