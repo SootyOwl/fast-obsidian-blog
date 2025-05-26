@@ -55,7 +55,68 @@ After completion:
 
 ## Extending the site template
 
-### Adding markdown-it plugins
+### Adding custom Nunjucks layouts
+
+To add custom Nunjucks layouts, create a `_includes` directory in the root of your content directory. Inside this directory, you can create Nunjucks templates that will be used to render your pages. For more information on how to create Nunjucks templates, refer to the [Nunjucks documentation](https://mozilla.github.io/nunjucks/).
+
+Once you have created your custom Nunjucks templates, you can use them in your Markdown files by adding the `layout` frontmatter property to the top of your Markdown files. For example:
+
+```markdown
+---
+layout: my-custom-layout
+title: My Custom Page
+---
+
+# My Custom Page
+This is my custom page using a custom Nunjucks layout.
+```
+
+#### Layout aliases
+
+You can also create aliases for your layouts to make them easier to use. To do this, you can add an `aliases` property to the `eleventyConfig.addLayoutAlias` method in your `eleventy.config.js` file. For example:
+
+```javascript
+// eleventy.config.js
+const eleventyConfig = (eleventyConfig) => {
+    // Add layout aliases
+    eleventyConfig.addLayoutAlias('custom', 'my-custom-layout');
+};
+```
+
+Then, you can use the alias in your Markdown files like this:
+
+```markdown
+---
+layout: custom  (alias for my-custom-layout)
+title: My Custom Page
+---
+# My Custom Page
+This is my custom page using a custom Nunjucks layout with an alias.
+```
+
+If using the provided `eleventy.config.js` file, there is a default layout alias for `post` that points to the `mylayout.njk` template and uses a helper function to register the alias, copy this pattern to add your own aliases.
+
+
+### Adding custom CSS
+
+All the CSS for the base site is located in `bundle.css` in the `content/` directory. You can add your own custom CSS to this file or create a new CSS file and link it in your Nunjucks templates. Ensure that the `eleventyConfig.addPassthroughCopy` method in your `eleventy.config.js` file includes the CSS file you want to use. For example:
+
+```javascript
+// eleventy.config.js
+const eleventyConfig = (eleventyConfig) => {
+    // Add passthrough copy for CSS
+    eleventyConfig.addPassthroughCopy('content/bundle.css');
+};
+```
+
+Then, you can link the CSS file in your Nunjucks templates like this:
+
+```html
+<link rel="stylesheet" href="/bundle.css">
+```
+
+
+### Adding Markdown-it plugins
 
 The Markdown parser is created using the `markdown-it` library, which allows you to extend its functionality with plugins to add additional features.
 
