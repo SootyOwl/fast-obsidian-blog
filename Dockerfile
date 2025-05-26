@@ -1,12 +1,13 @@
-FROM node:23-slim AS builder
+FROM node:22-alpine AS builder
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-# chown
-RUN chown -R node:node /app
+COPY package*.json eleventy.config.js ./
+RUN npm ci --omit=dev \
+    && mkdir -p _site
 
-USER node
-RUN mkdir content _site 
-VOLUME [ "/app/content" ]
-ENTRYPOINT [ "npx", "@11ty/eleventy", "--serve" ]
+# Runtime
+FROM gcr.io/distroless/nodejs22-debian12
+WORKDIR /app
+COPY --from=builder /app /app
+VOLUME ["/app/content"]
+EXPOSE 8080
+CMD ["/app/node_modules/.bin/eleventy", "--serve"]

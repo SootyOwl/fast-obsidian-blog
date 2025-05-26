@@ -1,3 +1,4 @@
 .obsidian
-**.md
+content/**.md
+!**/_templates/post.md
 node_modules
