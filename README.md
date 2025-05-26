@@ -156,3 +156,19 @@ module.exports = (eleventyConfig) => {
 This project's own code is released under The Unlicense and dedicated to the public domain. However, this project uses third-party dependencies that are subject to their own licenses. The terms of The Unlicense apply only to this project's original code, not to its dependencies.
 
 Please refer to each dependency's own license terms, which can typically be found in their respective package documentation or repository.
+
+## Contributing
+
+Contributions are welcome! If you have suggestions for improvements or new features, feel free to open an issue or submit a pull request.
+
+## Changelog
+
+A full changelog is available in the [CHANGELOG.md](CHANGELOG.md) file.
+
+## Acknowledgements
+
+This project is inspired by the need for a simple, fast, and customizable static site generator that integrates well with Obsidian Sync. Special thanks to the creators of [11ty](https://www.11ty.dev/), [Obsidian](https://obsidian.md/), and all the contributors to the various plugins and libraries used in this project.
+
+## Contact
+
+For any questions, suggestions, or feedback, feel free to reach out via [GitHub Issues](https://github.com/SootyOwl/fast-obsidian-blog/issues/new).
