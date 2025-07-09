@@ -11,10 +11,10 @@
   "type": "commonjs",
   "description": "",
   "dependencies": {
-    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy": "^3.1.2",
     "@photogabble/eleventy-plugin-interlinker": "^1.1.0",
     "markdown-it-footnote": "^4.0.0",
-    "markdown-it-obsidian-callouts": "^0.3.1",
+    "markdown-it-obsidian-callouts": "^0.3.2",
     "markdown-it-task-checkbox": "^1.0.6"
   }
 }
