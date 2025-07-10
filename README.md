@@ -51,7 +51,7 @@ After completion:
 - If Obsidian Sync is enabled, visit `http://localhost:${OBSIDIAN_PORT}` for the Obsidian interface to set up your vault sync
 - Edit your content in the `$CONTENT_DIR` directory
 - The site will automatically rebuild when you save changes to the Markdown files
-- The Obsidian Sync container will automatically sync changes to your Obsidian vault if enabled and configured 
+- The Obsidian Sync container will automatically sync changes to your Obsidian vault if enabled and configured
 
 ## Extending the site template
 
