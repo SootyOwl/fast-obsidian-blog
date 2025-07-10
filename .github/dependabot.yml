@@ -10,7 +10,7 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      all-dependencies:
+      npm:
         patterns:
           - "*"
   - package-ecosystem: "docker"
@@ -18,7 +18,7 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      all-dependencies:
+      docker:
         patterns:
           - "*"
   - package-ecosystem: "github-actions"
@@ -26,6 +26,6 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      all-dependencies:
+      github-actions:
         patterns:
           - "*"
