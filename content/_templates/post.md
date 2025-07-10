@@ -1,6 +1,6 @@
 ---
 layout: post
 title: <% tp.file.title %>
-subtitle: 
+subtitle:
 permalink: /{{ title | slugify }}/
 ---
