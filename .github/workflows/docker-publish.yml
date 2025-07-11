@@ -2,7 +2,7 @@ name: Docker Publish
 
 on:
   release:
-    types: [published, prereleased]
+    types: [released]
 
 env:
   REGISTRY: ghcr.io
