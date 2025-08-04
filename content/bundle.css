@@ -1,48 +1,103 @@
-/* Basic CSS for the site. See 11ty's documentation for more customisation options etc. */
+/* Nord Color Palette Variables */
+:root {
+    /* Enable light/dark mode switching */
+    color-scheme: light dark;
+    
+    /* Nord Polar Night (Dark Colors) */
+    --nord0: #2e3440;
+    --nord1: #3b4252;
+    --nord2: #434c5e;
+    --nord3: #4c566a;
+    
+    /* Nord Snow Storm (Light Colors) */
+    --nord4: #d8dee9;
+    --nord5: #e5e9f0;
+    --nord6: #eceff4;
+    
+    /* Nord Frost (Blue Colors) */
+    --nord7: #8fbcbb;
+    --nord8: #88c0d0;
+    --nord9: #81a1c1;
+    --nord10: #5e81ac;
+    
+    /* Nord Aurora (Accent Colors) */
+    --nord11: #bf616a; /* Red */
+    --nord12: #d08770; /* Orange */
+    --nord13: #ebcb8b; /* Yellow */
+    --nord14: #a3be8c; /* Green */
+    --nord15: #b48ead; /* Purple */
+    
+    /* Semantic color mappings using light-dark() */
+    --bg-primary: light-dark(var(--nord6), var(--nord0));
+    --bg-secondary: light-dark(var(--nord5), var(--nord1));
+    --bg-tertiary: light-dark(var(--nord4), var(--nord2));
+    
+    --text-primary: light-dark(var(--nord0), var(--nord6));
+    --text-secondary: light-dark(var(--nord1), var(--nord4));
+    --text-tertiary: light-dark(var(--nord3), var(--nord3));
+    
+    --link-primary: light-dark(var(--nord10), var(--nord8));
+    --link-internal: light-dark(var(--nord9), var(--nord7));
+    --link-stub: light-dark(var(--nord11), var(--nord12));
+    
+    --border-color: light-dark(var(--nord4), var(--nord2));
+    --border-subtle: light-dark(var(--nord5), var(--nord1));
+}
+
 body {
     max-width: 800px;
     margin: 0 auto;
     padding: 1rem;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
-    color: #333;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 nav {
     margin-top: 2rem;
     padding-top: 1rem;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-color);
 }
 
 a {
-    color: #0066cc;
+    color: var(--link-primary);
     text-decoration: none;
+    transition: color 0.2s ease;
 }
 
 a:hover {
     text-decoration: underline;
+    color: light-dark(var(--nord8), var(--nord9));
 }
 
-h1,
-h2,
-h3 {
+h1, h2, h3 {
     line-height: 1.2;
+    color: var(--text-primary);
 }
 
-/* internal links */
+/* Internal links */
 a[href*="/"] {
-    color: #1DA1F2;
+    color: var(--link-internal);
 }
 
-/* internal links to pages which don't exist */
+a[href*="/"]:hover {
+    color: light-dark(var(--nord7), var(--nord8));
+}
+
+/* Internal links to pages which don't exist */
 a[href*="/stubs/"] {
-    color: #a94052;
+    color: var(--link-stub);
 }
 
-/* external links */
+a[href*="/stubs/"]:hover {
+    color: light-dark(var(--nord12), var(--nord11));
+}
+
+/* External links */
 a[href^="http"] {
-    color: #0066cc;
-    /* decorate with an arrow after the link */
+    color: var(--link-primary);
     position: relative;
     padding-right: 0.7em;
 }
@@ -53,59 +108,60 @@ a[href^="http"]:after {
     right: 0;
     font-size: 0.8em;
     line-height: 1.4;
+    color: var(--text-tertiary);
 }
 
-/* top content "margin-top: 0em; margin-bottom: 0em; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee;" */
+a[href^="http"]:hover:after {
+    color: var(--link-primary);
+}
+
+/* Top content */
 .top-content {
     margin-top: 0em;
     margin-bottom: 0em;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
 }
 
-/* footer */
+/* Footer */
 footer {
     margin-top: 2rem;
     padding-top: 1rem;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-color);
     font-size: 0.8em;
-    color: #666;
+    color: var(--text-secondary);
     text-align: center;
 }
 
-/* header */
+/* Header */
 header {
-    /* center */
     text-align: center;
 }
 
-
-
-/* p (class subtitle) */
+/* Subtitle */
 p.subtitle {
     font-size: 1.2em;
-    color: #666;
+    color: var(--text-secondary);
 }
 
-/* date */
+/* Dates */
 .dates {
-    color: #969696;
+    color: var(--text-tertiary);
     font-size: 0.8em;
     text-align: right;
 }
 
-/* tags */
+/* Tags */
 ul.tags {
     list-style-type: none;
     padding: 0;
 }
 
-/**
- * Color about
- */
- :root {
+/* Updated Callout Variables with Nord Colors */
+:root {
     --line-height-tight: 1.3;
     --callout-border-width: 0px;
     --callout-border-opacity: 0.25;
@@ -117,46 +173,30 @@ ul.tags {
     --callout-title-weight: 600;
     --callout-content-padding: 0;
     --callout-content-background: transparent;
-    --callout-blend-mode: var(darken);
-    --callout-info: 8, 109, 221;
-    --callout-todo: 8, 109, 221;
-    --callout-default: 8, 109, 221;
-    --callout-bug: 233, 49, 71;
-    --callout-error: 233, 49, 71;
-    --callout-fail: 233, 49, 71;
-    --callout-success: 8, 185, 78;
-    --callout-example: 120, 82, 238;
-    --callout-important: 0, 191, 188;
-    --callout-summary: 0, 191, 188;
-    --callout-tip: 0, 191, 188;
-    --callout-question: 236, 117, 0;
-    --callout-warning: 236, 117, 0;
-    --callout-quote: 158, 158, 158;
+    --callout-blend-mode: var(--callout-blend-mode-value);
+    
+    /* Nord-based callout colors */
+    --callout-info: light-dark(94, 161, 193, 136, 192, 208);    /* nord9/nord8 */
+    --callout-todo: light-dark(94, 161, 193, 136, 192, 208);    /* nord9/nord8 */
+    --callout-default: light-dark(94, 161, 193, 136, 192, 208); /* nord9/nord8 */
+    --callout-bug: light-dark(191, 97, 106, 208, 135, 112);     /* nord11/nord12 */
+    --callout-error: light-dark(191, 97, 106, 208, 135, 112);   /* nord11/nord12 */
+    --callout-fail: light-dark(191, 97, 106, 208, 135, 112);    /* nord11/nord12 */
+    --callout-success: light-dark(163, 190, 140, 163, 190, 140); /* nord14 */
+    --callout-example: light-dark(180, 142, 173, 180, 142, 173); /* nord15 */
+    --callout-important: light-dark(143, 188, 187, 143, 188, 187); /* nord7 */
+    --callout-summary: light-dark(143, 188, 187, 143, 188, 187);   /* nord7 */
+    --callout-tip: light-dark(143, 188, 187, 143, 188, 187);      /* nord7 */
+    --callout-question: light-dark(235, 203, 139, 235, 203, 139); /* nord13 */
+    --callout-warning: light-dark(235, 203, 139, 235, 203, 139);  /* nord13 */
+    --callout-quote: light-dark(76, 86, 106, 216, 222, 233);      /* nord3/nord4 */
     --callout-collapse-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0ibTkgMThsNi02bC02LTYiLz48L3N2Zz4=");
-  }
+    
+    --callout-blend-mode-value: light-dark(darken, lighten);
+}
 
-  .theme-light {
-    --callout-blend-mode: var(darken);
-  }
-
-  .theme-dark {
-    --callout-blend-mode: var(lighten);
-  }
-
-  html[data-theme="light"] #app {
-    --callout-blend-mode: var(darken);
-  }
-
-  html[data-theme="dark"] #app {
-    --callout-blend-mode: var(lighten);
-  }
-
-  /**
-   * Obsidian callout about
-   *
-   * The following style is exactly the same as in obsidian
-   */
-  .callout {
+/* Callout styles (preserved from original) */
+.callout {
     overflow: hidden;
     border-style: solid;
     border-color: rgba(var(--callout-color), var(--callout-border-opacity));
@@ -168,9 +208,9 @@ ul.tags {
     padding: var(--callout-padding);
     --callout-color: var(--callout-default);
     --callout-icon: lucide-pencil;
-  }
+}
 
-  .callout .callout-title {
+.callout .callout-title {
     padding: var(--callout-title-padding);
     display: flex;
     gap: 4px;
@@ -178,26 +218,26 @@ ul.tags {
     color: rgb(var(--callout-color));
     line-height: var(--line-height-tight);
     align-items: flex-start;
-  }
+}
 
-  details.callout .callout-title {
+details.callout .callout-title {
     margin: 0;
     cursor: pointer;
-  }
+}
 
-  .callout .callout-title .callout-icon {
+.callout .callout-title .callout-icon {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
-  }
+}
 
-  .callout .callout-title .callout-title-inner {
+.callout .callout-title .callout-title-inner {
     --font-weight: var(--callout-title-weight);
     font-weight: var(--font-weight);
     color: var(--callout-title-color);
-  }
+}
 
-  .callout .callout-title .callout-fold {
+.callout .callout-title .callout-fold {
     background-color: rgb(var(--callout-color));
     mask-image: var(--callout-collapse-icon);
     mask-size: 100%;
@@ -206,58 +246,124 @@ ul.tags {
     height: 24px;
     width: 24px;
     transition: 100ms ease-in-out;
-  }
+}
 
-  details[close].callout > .callout-title > .callout-fold {
+details[close].callout > .callout-title > .callout-fold {
     transform: rotate(-90deg);
-  }
+}
 
-  details[open].callout > .callout-title > .callout-fold {
+details[open].callout > .callout-title > .callout-fold {
     transform: rotate(90deg);
-  }
+}
 
-  .callout .callout-content {
+.callout .callout-content {
     overflow-x: auto;
     padding: var(--callout-content-padding);
     background-color: var(--callout-content-background);
-  }
+}
 
-  .callout[data-callout="todo"] {
+.callout[data-callout="todo"] {
     --callout-color: var(--callout-todo);
     --callout-icon: lucide-check-circle-2;
-  }
+}
 
-  .callout[data-callout="success"], .callout[data-callout="check"], .callout[data-callout="done"] {
+.callout[data-callout="success"], 
+.callout[data-callout="check"], 
+.callout[data-callout="done"] {
     --callout-color: var(--callout-success);
     --callout-icon: lucide-check;
-  }
+}
 
-  .callout[data-callout="warning"], .callout[data-callout="caution"], .callout[data-callout="attention"] {
+.callout[data-callout="warning"], 
+.callout[data-callout="caution"], 
+.callout[data-callout="attention"] {
     --callout-color: var(--callout-warning);
     --callout-icon: lucide-alert-triangle;
-  }
+}
 
-  .callout[data-callout="danger"], .callout[data-callout="error"] {
+.callout[data-callout="danger"], 
+.callout[data-callout="error"] {
     --callout-color: var(--callout-error);
     --callout-icon: lucide-zap;
-  }
+}
 
-  .callout[data-callout="tip"], .callout[data-callout="hint"] {
+.callout[data-callout="tip"], 
+.callout[data-callout="hint"] {
     --callout-color: var(--callout-tip);
     --callout-icon: lucide-flame;
-  }
+}
 
-  .callout[data-callout="example"] {
+.callout[data-callout="example"] {
     --callout-color: var(--callout-example);
     --callout-icon: lucide-list;
-  }
+}
 
-  .callout[data-callout="abstract"], .callout[data-callout="summary"], .callout[data-callout="tldr"] {
+.callout[data-callout="abstract"], 
+.callout[data-callout="summary"], 
+.callout[data-callout="tldr"] {
     --callout-color: var(--callout-summary);
     --callout-icon: lucide-clipboard-list;
-  }
+}
 
-  .callout[data-callout="quote"], .callout[data-callout="cite"] {
+.callout[data-callout="quote"], 
+.callout[data-callout="cite"] {
     --callout-color: var(--callout-quote);
     --callout-icon: quote-glyph;
-  }
+}
+
+/* Additional Nord-themed elements */
+code {
+    background-color: var(--bg-secondary);
+    color: var(--nord12);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+pre {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    border-left: 3px solid var(--nord8);
+}
+
+pre code {
+    background-color: transparent;
+    padding: 0;
+    color: inherit;
+}
+
+blockquote {
+    border-left: 3px solid var(--nord8);
+    margin: 1em 0;
+    padding-left: 1em;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Selection colors */
+::selection {
+    background-color: light-dark(var(--nord4), var(--nord2));
+    color: var(--text-primary);
+}
+
+/* Scrollbar styling for webkit browsers */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--nord3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: light-dark(var(--nord2), var(--nord4));
+}
