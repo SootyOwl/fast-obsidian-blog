@@ -8,21 +8,32 @@ const markdownItTaskCheckbox = require('markdown-it-task-checkbox');
 const mdItObsidianCallouts = require('markdown-it-obsidian-callouts');
 const mdItFootnote = require('markdown-it-footnote');
 
-module.exports = (eleventyConfig) => {
+const del = require('del').deleteSync;
+
+module.exports = async function (eleventyConfig) {
+  // sync the _site directory
+  eleventyConfig.on("eleventy.before", async ({ directories, runMode, outputMode }) => {
+    // delete the _site directory if it exists
+    if (runMode === "watch" || runMode === "serve") {
+      del(directories.output);
+    }
+  });
+
   // Set input directory to "content"
   eleventyConfig.setInputDirectory("content");
-
-  // Add the interlinker plugin for obsidian wikilink support
-  addEleventyPlugins(eleventyConfig, [
-    interlinker,
-    // other plugins can be added here
-  ]);
+  eleventyConfig.setIncludesDirectory("_includes");
 
   // Add an alias for the post layout (and other aliases)
   addLayoutAliases(eleventyConfig, {
-    post: "mylayout.njk",
+    // post: "mylayout.njk",
     // other aliases can be added here
   });
+
+  // Add the interlinker plugin for obsidian wikilink support
+  eleventyConfig.addPlugin(
+    interlinker
+  );
+
 
   // Add passthrough copy for static assets like .css files
   addPassthroughCopy(eleventyConfig, [
@@ -45,6 +56,11 @@ module.exports = (eleventyConfig) => {
     day: "numeric",
   });
 };
+
+module.exports.config = {
+  markdownTemplateEngine: "njk",
+  htmlTemplateEngine: "njk",
+}
 
 
 // helpers
